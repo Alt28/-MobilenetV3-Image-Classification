@@ -34,9 +34,11 @@ except FileNotFoundError:
     # Fallback to sample categories
     categories = [f"class_{i}" for i in range(1000)]
 
-# Print top categories per image
 top5_prob, top5_catid = torch.topk(probabilities, 5)
+print("\n🎯 Top 5 Predictions:")
+print("-" * 40)
 for i in range(top5_prob.size(0)):
-    print(categories[top5_catid[i]], top5_prob[i].item())
+    confidence = top5_prob[i].item() * 100  # Convert to percentage
+    print(f"{i+1}. {categories[top5_catid[i]]:25} {confidence:6.2f}%")
 # prints class names and probabilities like:
 # [('Samoyed', 0.6425196528434753), ('Pomeranian', 0.04062102362513542), ('keeshond', 0.03186424449086189), ('white wolf', 0.01739676296710968), ('Eskimo dog', 0.011717947199940681)]
