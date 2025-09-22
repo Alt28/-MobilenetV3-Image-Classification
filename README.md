@@ -5,10 +5,11 @@ A simple Python application that classifies images using pre-trained deep learni
 ## Features
 
 - 🖼️ **Local Image Classification**: Classify any local image file
-- 🧠 **Pre-trained Models**: Uses ResNet18 model trained on ImageNet
+- 🧠 **Pre-trained Models**: Uses MobileNetV3 model trained on ImageNet
 - 📊 **Top-K Results**: Shows top 5 predictions with confidence scores
 - 🔧 **No Internet Required**: Works completely offline once set up
 - 📋 **Full ImageNet Classes**: Supports all 1000 ImageNet categories
+- 📱 **Mobile Optimized**: Lightweight model perfect for edge devices
 
 ## Requirements
 
@@ -74,11 +75,11 @@ python -c "import urllib.request; urllib.request.urlretrieve('https://raw.github
 ```
 torch.Size([1000])
 Loaded 1000 ImageNet categories from local file
-golden retriever 0.9918700456619263
-Labrador retriever 0.0022274835500866175
-flat-coated retriever 0.002045820700004697
-kuvasz 0.0007030873093754053
-tennis ball 0.00038286540075205266
+bull mastiff 0.16561302542686462
+Saint Bernard 0.11810302734375
+boxer 0.0917702317237854
+French bulldog 0.051590368151664734
+pug 0.040158968418836594
 ```
 
 ## File Structure
@@ -97,10 +98,12 @@ newTest/
 ### Changing the Model
 You can use different pre-trained models by modifying this line in `text.py`:
 ```python
-model = timm.create_model('resnet18', pretrained=True)
+model = timm.create_model('mobilenetv3_large_100', pretrained=True)
 ```
 
 **Popular alternatives:**
+- `'mobilenetv3_small_100'` - Even smaller MobileNetV3 variant
+- `'resnet18'` - Fast and lightweight ResNet
 - `'resnet50'` - Larger, more accurate ResNet
 - `'efficientnet_b0'` - Efficient and accurate
 - `'vit_base_patch16_224'` - Vision Transformer
@@ -140,7 +143,7 @@ img = Image.open("your_image.jpg").convert('RGB')
 - **macOS/Linux**: Use `source .venv/bin/activate`
 
 **4. Memory Issues**
-- Try using a smaller model like `resnet18` instead of larger models
+- Try using a smaller model like `mobilenetv3_small_100` instead of larger models
 - Reduce image size if very large
 
 ### Running Commands
@@ -168,7 +171,9 @@ python text.py
 
 ## Model Information
 
-- **Architecture**: ResNet18
+- **Architecture**: MobileNetV3-Large
 - **Training Dataset**: ImageNet (1.2M images, 1000 classes)
+- **Model Size**: ~22 MB (lightweight and mobile-optimized)
 - **Input Size**: 224x224 pixels
 - **Output**: 1000 class probabilities
+- **Optimization**: Designed for mobile and edge devices with efficient inference
