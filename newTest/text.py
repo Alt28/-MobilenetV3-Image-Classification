@@ -5,7 +5,7 @@ from timm.data import resolve_data_config
 from timm.data.transforms_factory import create_transform
 
 # Load a pre-trained model
-model = timm.create_model('resnet18', pretrained=True)
+model = timm.create_model('mobilenetv3_large_100', pretrained=True)
 model.eval()
 
 # Set up image transformation
